@@ -110,7 +110,7 @@ export default function App(){
         )}
       </div>
       {toast.msg.length > 0 && <Toast msg={toast.msg} ok={toast.ok} />}
-      <Github repoURL={""} profileURL={""} />
+      <Github repoURL={"https://github.com/bruzz-bruzz/csv-tabulator"} profileURL={"https://github.com/bruzz-bruzz"} />
     </div>
   )
 }
