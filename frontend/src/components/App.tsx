@@ -7,6 +7,7 @@ export default function App(){
   const [toast,setToast] = useState({msg:"",ok:false})
   const [reading,setReading] = useState(false)
   const [page,setPage] = useState(0)
+  const [fileSize,setFileSize] = useState(0)
   function clearToast(){
     setTimeout(()=>{
       setToast({msg:"",ok:false})
@@ -20,6 +21,7 @@ export default function App(){
       return
     }
     const reader = new FileReader()
+    setFileSize(parseFloat((file.size / 1024).toFixed(2)))
     reader.onload = (e) => {
       const result = e.target?.result as string
       let arr:string[][] = result ? result.split('\n').map((row) => row.split(',')) : []
@@ -66,7 +68,7 @@ export default function App(){
         {csvData !== null && reading === false && (
           <div className="overflow-x-auto rounded-lg border border-gray-200">
             <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
-              <h3 className="text-sm font-semibold text-gray-700">{csvData.length} ROWS x {csvData[0].length} COLUMNS</h3>
+              <h3 className="text-sm font-semibold text-gray-700">{csvData.length} ROWS x {csvData[0].length} COLUMNS ({fileSize} KB)</h3>
             </div>
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-100">
